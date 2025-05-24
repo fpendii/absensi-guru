@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/template-admin/production/images/favicon.ico" type="image/ico" />
 
-      <title>@yield('title', 'Dashboard')</title>
+    <title>@yield('title', 'Dashboard')</title>
 
     <!-- Bootstrap -->
     <link href="/template-admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +29,16 @@
 
     <!-- Custom Theme Style -->
     <link href="/template-admin/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet Geocoder Plugin -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
 </head>
 
 <body class="nav-md">
@@ -206,10 +216,10 @@
             </div>
             <!-- /top navigation -->
 
-                {{-- Main Content --}}
-                <div class="right_col" role="main">
-                    @yield('content')
-                </div>
+            {{-- Main Content --}}
+            <div class="right_col" role="main">
+                @yield('content')
+            </div>
             <!-- /page content -->
 
             <!-- footer content -->
