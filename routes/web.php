@@ -17,6 +17,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
 
     Route::get('/data-guru', [DataGuruControllerAdmin::class, 'dataGuru'])->name('dataGuru');
+    Route::get('/data-guru/create', [DataGuruControllerAdmin::class, 'create'])->name('create');
+
 
     Route::get('/lokasi-sekolah', [LokasiSekolahControllerAdmin::class, 'lokasiSekolah'])->name('lokasiSekolah');
 
