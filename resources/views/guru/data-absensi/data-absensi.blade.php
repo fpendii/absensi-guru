@@ -17,31 +17,40 @@
         </div>
 
         <div class="x_content">
-            <form action="{{ url('guru.absensi.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" class="form-control" value="Guru 1" readonly>
+            @if ($absensiHariIni)
+                <div class="alert alert-success">
+                    Anda sudah melakukan absensi hari ini.
                 </div>
-                <div class="form-group">
-                    <label>Tanggal</label>
-                    <input type="text" class="form-control" value="{{ \Carbon\Carbon::now()->format('d M Y') }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Waktu</label>
-                    <input type="text" class="form-control" value="{{ \Carbon\Carbon::now()->format('H:i:s') }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <select name="status" class="form-control" required>
-                        <option value="">-- Pilih Status --</option>
-                        <option value="hadir">Hadir</option>
-                        <option value="izin">Izin</option>
-                        <option value="sakit">Sakit</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Absen Sekarang</button>
-            </form>
+            @else
+                <form action="{{ url('guru/data-absensi/store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_guru" value="{{ $dataGuru->id }}">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" name="nama" value="{{ $dataGuru->nama }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="text" class="form-control" name="tanggal" value="{{ \Carbon\Carbon::now()->format('d M Y') }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Waktu</label>
+                        <input type="text" class="form-control" name="waktu" value="{{ \Carbon\Carbon::now()->format('H:i:s') }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="">-- Pilih Status --</option>
+                            <option value="hadir">Hadir</option>
+                            <option value="izin">Izin</option>
+                            <option value="sakit">Sakit</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i> Absen Sekarang
+                    </button>
+                </form>
+            @endif
         </div>
     </div>
 </div>

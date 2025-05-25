@@ -36,4 +36,9 @@ class GuruModel extends Model
     {
         return $this->belongsTo(UserModel::class);
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(AbsensiGuruModel::class, 'id', 'id_guru');
+    }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\guru\DataAbsensiControllerGuru;
 use App\Http\Controllers\guru\RekapAbsensiControllerGuru;
 use App\Http\Controllers\guru\ProfilControllerGuru;
 
+Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
 
 // ===================== Admin =====================
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -36,8 +37,12 @@ Route::prefix('guru')->name('guru.')->group(function () {
     Route::get('/dashboard', [DashboardControllerGuru::class, 'dashboard'])->name('dashboard');
 
     Route::get('/data-absensi', [DataAbsensiControllerGuru::class, 'dataAbsensi'])->name('dataAbsensi');
+    Route::post('/data-absensi/store', [DataAbsensiControllerGuru::class, 'store'])->name('storeAbsensi');
 
     Route::get('/rekap-absensi', [RekapAbsensiControllerGuru::class, 'rekapAbsensi'])->name('rekapAbsensi');
+    Route::get('/rekap-absensi/export/excel', [RekapAbsensiControllerGuru::class, 'exportExcel'])->name('exportExcel');
+
+
 
     Route::get('/profil', [ProfilControllerGuru::class, 'profil'])->name('profil');
 });

@@ -14,7 +14,7 @@
             <div class="x_title">
                 <h2>Data Absensi Anda</h2>
                 <div class="nav navbar-right panel_toolbox">
-                    <a href="{{ url('guru.absensi.export.excel') }}" class="btn btn-sm btn-success">
+                    <a href="{{ url('guru/rekap-absensi/export/excel') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-file-excel-o"></i> Export Excel
                     </a>
                     <a href="{{ url('guru.absensi.export.pdf') }}" class="btn btn-sm btn-danger">
@@ -36,37 +36,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- Contoh data, ganti dengan @foreach --}}
-                            <tr>
-                                <td>1</td>
-                                <td>2025-05-20</td>
-                                <td>07:04:22</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2025-05-21</td>
-                                <td>07:02:11</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2025-05-22</td>
-                                <td>07:15:33</td>
-                                <td><span class="badge badge-warning">Izin</span></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>2025-05-23</td>
-                                <td>07:18:44</td>
-                                <td><span class="badge badge-danger">Sakit</span></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>2025-05-24</td>
-                                <td>07:06:05</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
-                            </tr>
+                            @foreach ($dataAbsensiGuru as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                    <td>{{ $item->waktu_masuk }}</td>
+                                    <td>
+                                        @php
+                                            switch (strtolower($item->status)) {
+                                                case 'hadir':
+                                                    $badge = 'success';
+                                                    break;
+                                                case 'izin':
+                                                    $badge = 'primary';
+                                                    break;
+                                                case 'sakit':
+                                                    $badge = 'warning';
+                                                    break;
+                                                case 'alfa':
+                                                    $badge = 'danger';
+                                                    break;
+                                                default:
+                                                    $badge = 'secondary';
+                                            }
+                                        @endphp
+                                        <span class="badge badge-{{ $badge }}">{{ ucfirst($item->status) }}</span>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+
+
                         </tbody>
                     </table>
                 </div>
