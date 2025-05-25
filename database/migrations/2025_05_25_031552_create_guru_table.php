@@ -16,7 +16,6 @@ class CreateGuruTable extends Migration
             $table->string('nama');
             $table->string('nip')->nullable()->unique();
             $table->string('nuptk')->nullable()->unique();
-            $table->string('email')->unique();
             $table->string('telepon')->nullable();
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('tempat_lahir')->nullable();

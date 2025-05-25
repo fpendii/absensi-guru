@@ -18,6 +18,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/data-guru', [DataGuruControllerAdmin::class, 'dataGuru'])->name('dataGuru');
     Route::get('/data-guru/create', [DataGuruControllerAdmin::class, 'create'])->name('create');
+    Route::post('/data-guru/store', [DataGuruControllerAdmin::class, 'store'])->name('store');
+    Route::get('/data-guru/edit/{id}', [DataGuruControllerAdmin::class, 'edit'])->name('edit');
+    Route::put('/data-guru/update/{id}', [DataGuruControllerAdmin::class, 'update'])->name('update');
+    Route::delete('/data-guru/delete/{id}', [DataGuruControllerAdmin::class, 'destroy'])->name('destroy');
 
 
     Route::get('/lokasi-sekolah', [LokasiSekolahControllerAdmin::class, 'lokasiSekolah'])->name('lokasiSekolah');

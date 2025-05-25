@@ -17,9 +17,11 @@ class UserModel extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'username',
         'password',
         'role',
+        'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     protected $hidden = [
