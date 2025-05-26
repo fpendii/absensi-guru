@@ -15,6 +15,20 @@
                 <h2>Daftar Absensi</h2>
                 <div class="clearfix"></div>
             </div>
+            <form method="GET" action="{{ url('admin/data-absensi') }}" class="mb-3">
+                <div class="form-group row">
+                    <label for="tanggal" class="col-form-label col-md-2">Pilih Tanggal:</label>
+                    <div class="col-md-4">
+                        <input type="date" name="tanggal" id="tanggal" class="form-control"
+                            value="{{ request('tanggal') }}">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+                    </div>
+                </div>
+            </form>
+
+
 
             <div class="x_content">
                 <div class="table-responsive">
@@ -30,51 +44,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2025-05-25</td>
-                                <td>Ahmad Santoso</td>
-                                <td>07:01:23</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
+                            @forelse ($dataAbsensi as $index => $data)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($data->tanggal)->isToday() ? 'Hari ini' : $data->tanggal }}
+                                    </td>
 
-                                <td>
-                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2025-05-25</td>
-                                <td>Sri Wahyuni</td>
-                                <td>07:10:45</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
 
-                                <td>
-                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2025-05-25</td>
-                                <td>Budi Hartono</td>
-                                <td>-</td>
-                                <td><span class="badge badge-danger">Tidak Hadir</span></td>
 
-                                <td>
-                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>2025-05-25</td>
-                                <td>Lestari Dewi</td>
-                                <td>07:05:12</td>
-                                <td><span class="badge badge-success">Hadir</span></td>
-
-                                <td>
-                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</a>
-                                </td>
-                            </tr>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->waktu_masuk ?? '-' }}</td>
+                                    <td>
+                                        @if ($data->status == 'Hadir')
+                                            <span class="badge badge-success">Hadir</span>
+                                        @else
+                                            <span class="badge badge-danger">Tidak Hadir</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('admin/absensi/detail/', $data->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                @php
+                                    $tanggalDipilih = request('tanggal');
+                                    $isToday = \Carbon\Carbon::parse($tanggalDipilih)->isToday();
+                                @endphp
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        Tidak ada data absensi untuk {{ $isToday ? 'hari ini' : $tanggalDipilih }}.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
+
+
                     </table>
                 </div>
             </div>
