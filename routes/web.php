@@ -28,6 +28,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/lokasi-sekolah', [LokasiSekolahControllerAdmin::class, 'lokasiSekolah'])->name('lokasiSekolah');
 
     Route::get('/data-absensi', [DataAbsensiControllerAdmin::class, 'dataAbsensi'])->name('dataAbsensi');
+    Route::post('/rekap-absensi', [DataAbsensiControllerAdmin::class, 'rekapHariIni']);
+
 
     Route::get('/profil', [ProfilControllerAdmin::class, 'profil'])->name('profil');
 });

@@ -93,8 +93,8 @@
                                 const userLat = position.coords.latitude;
                                 const userLng = position.coords.longitude;
 
-                                const sekolahLat = -3.8036268;
-                                const sekolahLng = 114.7658191;
+                                const sekolahLat = -3.7536136711084698;
+                                const sekolahLng = 114.76258475561522;
                                 const radiusMaks = 100; // meter
 
                                 const distance = hitungJarak(userLat, userLng, sekolahLat, sekolahLng);
