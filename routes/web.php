@@ -10,8 +10,13 @@ use App\Http\Controllers\guru\DashboardControllerGuru;
 use App\Http\Controllers\guru\DataAbsensiControllerGuru;
 use App\Http\Controllers\guru\RekapAbsensiControllerGuru;
 use App\Http\Controllers\guru\ProfilControllerGuru;
+use App\Http\Controllers\AuthController;
 
 // Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // ===================== Admin =====================
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -32,6 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
     Route::get('/profil', [ProfilControllerAdmin::class, 'profil'])->name('profil');
+    Route::post('/profil/update', [ProfilControllerAdmin::class, 'update'])->name('updateProfil');
 });
 
 // ===================== Guru =====================
