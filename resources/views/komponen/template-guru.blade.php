@@ -63,11 +63,11 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
+                                {{-- <li>
                                     <a href="/guru/dashboard">
                                         <i class="fa fa-home"></i> Dashboard
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="/guru/data-absensi">
                                         <i class="fa fa-calendar-check-o"></i> Absensi

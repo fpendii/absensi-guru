@@ -11,7 +11,7 @@ use App\Http\Controllers\guru\DataAbsensiControllerGuru;
 use App\Http\Controllers\guru\RekapAbsensiControllerGuru;
 use App\Http\Controllers\guru\ProfilControllerGuru;
 
-Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
+// Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
 
 // ===================== Admin =====================
 Route::prefix('admin')->name('admin.')->group(function () {

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\AbsensiGuruModel;
 use App\Models\GuruModel;
 use Carbon\Carbon;
+use App\Helpers\WhatsappHelper;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
+
 
 
 class DataAbsensiControllerAdmin extends Controller
@@ -40,16 +44,12 @@ class DataAbsensiControllerAdmin extends Controller
 
         $tanggalRekap = Carbon::parse($tanggal)->toDateString();
 
-        // Ambil semua ID guru
         $guruIds = GuruModel::pluck('id');
-
-        // Ambil ID guru yang sudah absen pada tanggal tersebut
         $guruSudahAbsen = AbsensiGuruModel::where('tanggal', $tanggalRekap)->pluck('id_guru');
-
-        // Cari guru yang belum absen
         $guruBelumAbsen = $guruIds->diff($guruSudahAbsen);
 
-        // Tambahkan absensi status "Tidak Hadir"
+        $daftarTidakHadir = [];
+
         foreach ($guruBelumAbsen as $id_guru) {
             $guru = GuruModel::find($id_guru);
 
@@ -60,6 +60,39 @@ class DataAbsensiControllerAdmin extends Controller
                 'waktu_masuk' => null,
                 'status' => 'Tidak Hadir',
             ]);
+
+            $daftarTidakHadir[] = $guru->nama;
+        }
+
+        // ✅ Kirim WA hanya jika ada yang tidak hadir
+        if (count($daftarTidakHadir) > 0) {
+            $pesan = "*Rekap Absensi - $tanggalRekap*\n\n";
+            $pesan .= "Guru Tidak Hadir:\n";
+
+            foreach ($daftarTidakHadir as $nama) {
+                $pesan .= "- $nama\n";
+            }
+
+            $nomorAtasan = '6285668947486'; // format internasional tanpa +
+            $token = env('FONNTE_TOKEN');
+
+            $response = Http::asForm()->withHeaders([
+                'Authorization' => $token
+            ])->post('https://api.fonnte.com/send', [
+                'target' => $nomorAtasan,
+                'message' => $pesan,
+                'delay' => 1,
+                'countryCode' => '62'
+            ]);
+
+            Log::info('FONNTE WA Response', [
+                'status' => $response->status(),
+                'body' => $response->body()
+            ]);
+
+            if (!$response->json('status')) {
+                return redirect()->back()->with('error', 'Rekap berhasil, tapi WA gagal dikirim: ' . $response->json('reason'));
+            }
         }
 
         return redirect()->back()->with('success', 'Rekap absensi tanggal ' . $tanggalRekap . ' berhasil dilakukan.');
