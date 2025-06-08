@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use App\Models\AdminProfile;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilControllerAdmin extends Controller
 {
@@ -14,8 +16,8 @@ class ProfilControllerAdmin extends Controller
     {
         // Logic to retrieve and display profile data
         // This could involve fetching data from a model and passing it to a view
-        $admin = UserModel::where('role', 'admin')->first(); // Assuming admin profile is stored with ID 1
-
+        $id_admin = Auth::user()->id; // Ambil ID admin dari user yang sedang login
+        $admin = UserModel::where('role', 'admin')->where('id', $id_admin)->first(); // Assuming admin profile is stored with ID 1
         return view('admin.profil.profil', compact('admin')); // Adjust the view path as necessary
     }
 
@@ -27,7 +29,8 @@ class ProfilControllerAdmin extends Controller
             'password' => 'nullable|string|min:6|confirmed', // pakai konfirmasi password
         ]);
 
-        $admin = UserModel::find(1);
+        $id_admin = Auth::user()->id; // Ambil ID admin dari user yang sedang login
+        $admin = UserModel::find($id_admin); // Ambil data admin berdasarkan ID
 
         if ($admin) {
             // Update data dasar

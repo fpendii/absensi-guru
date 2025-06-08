@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\GuruModel;
 use Illuminate\Http\Request;
 use App\Models\AbsensiGuruModel;
+use Illuminate\Support\Facades\Auth;
 
 class DataAbsensiControllerGuru extends Controller
 {
     public function dataAbsensi()
 {
-    $dataGuru = GuruModel::where('id', 2)->first();
+    // Ambil ID guru dari user yang sedang login
+    $idGuru = Auth::user()->id;
+    // Ambil data guru berdasarkan ID (misalnya ID 2)
+    $dataGuru = GuruModel::where('user_id', $idGuru)->first();
 
     if (!$dataGuru) {
         return redirect()->back()->with('error', 'Data guru tidak ditemukan.');

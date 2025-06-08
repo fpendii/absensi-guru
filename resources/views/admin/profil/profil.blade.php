@@ -43,10 +43,10 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Email</th>
-                    <td><input type="email" name="email" class="form-control" value="{{ old('email', $admin->email ?? '') }}" required></td>
+                    <td><input type="email" name="email" class="form-control" value="{{ $admin->email}}" required></td>
                 </tr>
 
-                
+
 
                 <!-- field password -->
                 <tr>

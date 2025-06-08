@@ -12,20 +12,9 @@ class UserSeeder extends Seeder
     {
         // Admin
         UserModel::create([
-            'name' => 'Admin Sekolah',
-            'email' => 'admin@example.com',
-            'username' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
-        ]);
-
-        // Guru
-        UserModel::create([
-            'name' => 'Ahmad Santoso',
-            'email' => 'ahmad@example.com',
-            'username' => 'ahmad',
-            'password' => Hash::make('password'),
-            'role' => 'guru',
         ]);
     }
 }

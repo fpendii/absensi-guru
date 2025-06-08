@@ -13,7 +13,7 @@ use App\Http\Controllers\guru\ProfilControllerGuru;
 use App\Http\Controllers\AuthController;
 
 // Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
-
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
@@ -53,4 +53,5 @@ Route::prefix('guru')->name('guru.')->group(function () {
 
 
     Route::get('/profil', [ProfilControllerGuru::class, 'profil'])->name('profil');
+    Route::post('/profil/update', [ProfilControllerGuru::class, 'update'])->name('updateProfil');
 });

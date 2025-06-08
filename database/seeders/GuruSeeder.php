@@ -13,9 +13,7 @@ class GuruSeeder extends Seeder
     {
         // Buat user guru
         $user = UserModel::create([
-            'name' => 'Ahmad Santoso',
-            'email' => 'ahmad@example.com',
-            'username' => 'ahmad123',
+            'email' => 'ahmad@gmail.com',
             'password' => Hash::make('password'), // ganti dengan password aman
             'role' => 'guru',
         ]);
@@ -26,7 +24,6 @@ class GuruSeeder extends Seeder
             'nama' => 'Ahmad Santoso',
             'nip' => '197812312020011001',
             'nuptk' => '1234567890123456',
-            'email' => 'ahmad@example.com',
             'telepon' => '08123456789',
             'jenis_kelamin' => 'Laki-laki',
             'tempat_lahir' => 'Bandung',
