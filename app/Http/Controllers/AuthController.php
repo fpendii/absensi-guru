@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,33 +13,33 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        // Ambil user yang sedang login
-        $user = Auth::user();
+            // Ambil user yang sedang login
+            $user = Auth::user();
 
-        // Arahkan berdasarkan role
-        switch ($user->role) {
-            case 'admin':
-                return redirect()->intended('/admin/data-guru');
-            case 'guru':
-                return redirect()->intended('/guru/data-absensi');
-            default:
-                return redirect()->intended('/dashboard'); // default jika tidak cocok
+            // Arahkan berdasarkan role
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/admin/data-guru');
+                case 'guru':
+                    return redirect()->intended('/guru/data-absensi');
+                default:
+                    return redirect()->intended('/dashboard'); // default jika tidak cocok
+            }
         }
-    }
 
-    return back()->withErrors([
-        'email' => 'Email atau password salah.',
-    ])->onlyInput('email');
-}
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
+    }
 
 
     public function logout(Request $request)

@@ -10,7 +10,6 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Admin
         UserModel::create([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),

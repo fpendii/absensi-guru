@@ -63,7 +63,7 @@
                             <ul class="nav side-menu">
                                 {{-- <li><a href="/admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li> --}}
                                 <li><a href="/admin/data-guru"><i class="fa fa-user"></i> Data Guru</a></li>
-                                {{-- <li><a href="/admin/lokasi-sekolah"><i class="fa fa-map-marker"></i> Lokasi Sekolah</a> --}}
+                                <li><a href="/admin/lokasi-sekolah"><i class="fa fa-map-marker"></i> Lokasi Sekolah</a>
                                 </li>
                                 <li><a href="/admin/data-absensi"><i class="fa fa-calendar-check-o"></i> Data
                                         Absensi</a></li>

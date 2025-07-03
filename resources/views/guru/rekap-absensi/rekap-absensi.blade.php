@@ -17,9 +17,9 @@
                     <a href="{{ url('guru/rekap-absensi/export/excel') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-file-excel-o"></i> Export Excel
                     </a>
-                    <a href="{{ url('guru.absensi.export.pdf') }}" class="btn btn-sm btn-danger">
+                    {{-- <a href="{{ url('guru.absensi.export.pdf') }}" class="btn btn-sm btn-danger">
                         <i class="fa fa-file-pdf-o"></i> Export PDF
-                    </a>
+                    </a> --}}
                 </div>
                 <div class="clearfix"></div>
             </div>

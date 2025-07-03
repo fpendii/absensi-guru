@@ -29,15 +29,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/data-guru/update/{id}', [DataGuruControllerAdmin::class, 'update'])->name('update');
     Route::delete('/data-guru/delete/{id}', [DataGuruControllerAdmin::class, 'destroy'])->name('destroy');
 
-
     Route::get('/lokasi-sekolah', [LokasiSekolahControllerAdmin::class, 'lokasiSekolah'])->name('lokasiSekolah');
+    Route::post('/lokasi-sekolah/update', [LokasiSekolahControllerAdmin::class, 'updateLokasiSekolah'])->name('updateLokasiSekolah');
 
     Route::get('/data-absensi', [DataAbsensiControllerAdmin::class, 'dataAbsensi'])->name('dataAbsensi');
     Route::post('/rekap-absensi', [DataAbsensiControllerAdmin::class, 'rekapHariIni']);
 
-
     Route::get('/profil', [ProfilControllerAdmin::class, 'profil'])->name('profil');
     Route::post('/profil/update', [ProfilControllerAdmin::class, 'update'])->name('updateProfil');
+
 });
 
 // ===================== Guru =====================
@@ -45,12 +45,10 @@ Route::prefix('guru')->name('guru.')->group(function () {
     Route::get('/dashboard', [DashboardControllerGuru::class, 'dashboard'])->name('dashboard');
 
     Route::get('/data-absensi', [DataAbsensiControllerGuru::class, 'dataAbsensi'])->name('dataAbsensi');
-    Route::post('/data-absensi/store', [DataAbsensiControllerGuru::class, 'store'])->name('storeAbsensi');
+    Route::post('/absensi/store', [DataAbsensiControllerGuru::class, 'store'])->name('storeAbsensi');
 
     Route::get('/rekap-absensi', [RekapAbsensiControllerGuru::class, 'rekapAbsensi'])->name('rekapAbsensi');
     Route::get('/rekap-absensi/export/excel', [RekapAbsensiControllerGuru::class, 'exportExcel'])->name('exportExcel');
-
-
 
     Route::get('/profil', [ProfilControllerGuru::class, 'profil'])->name('profil');
     Route::post('/profil/update', [ProfilControllerGuru::class, 'update'])->name('updateProfil');
