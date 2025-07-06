@@ -13,7 +13,9 @@ use App\Http\Controllers\guru\ProfilControllerGuru;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\JadwalMengajarControllerAdmin;
 use App\Http\Controllers\admin\MataPelajaranControllerAdmin;
+use App\Http\Controllers\Admin\RiwayatLoginControllerAdmin;
 use App\Http\Controllers\Admin\RuangKelasControllerAdmin;
+use App\Http\Controllers\guru\JadwalMengajarControllerGuru;
 
 // Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -63,6 +65,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     ]);
 
     Route::resource('ruang-kelas', RuangKelasControllerAdmin::class);
+
+    Route::get('/riwayat-log', [RiwayatLoginControllerAdmin::class, 'index'])->name('riwayatLog');
 });
 
 // ===================== Guru =====================
@@ -77,4 +81,7 @@ Route::prefix('guru')->name('guru.')->group(function () {
 
     Route::get('/profil', [ProfilControllerGuru::class, 'profil'])->name('profil');
     Route::post('/profil/update', [ProfilControllerGuru::class, 'update'])->name('updateProfil');
+
+    Route::get('jadwal-mengajar-saya', [JadwalMengajarControllerGuru::class, 'index'])->name('guru.jadwal-mengajar.index');
+
 });

@@ -63,33 +63,31 @@
                             <ul class="nav side-menu">
                                 {{-- <li><a href="/admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li> --}}
 
-                                <li><a href="/admin/data-guru"><i class="fa fa-user"></i> Data Guru</a></li>
+                                <li><a href="/admin/data-guru"><i class="fa fa-users"></i> Data Guru</a></li>
                                 <li><a href="/admin/lokasi-sekolah"><i class="fa fa-map-marker"></i> Lokasi Sekolah</a>
                                 </li>
-                                <li><a href="/admin/mata-pelajaran"><i class="fa fa-calendar-check-o"></i>Data Mata Pelajaran</a></li>
+                                <li><a href="/admin/mata-pelajaran"><i class="fa fa-book"></i> Mata Pelajaran</a></li>
+                                <li><a href="/admin/jadwal-ngajar"><i class="fa fa-calendar"></i> Jadwal Mengajar</a>
+                                </li>
                                 <li><a href="/admin/data-absensi"><i class="fa fa-calendar-check-o"></i> Data
                                         Absensi</a></li>
-                                <li><a href="/admin/jadwal-ngajar"><i class="fa fa-calendar-check-o"></i>Jadwal Ngajar</a></li>
-                                <li><a href="/admin/ruang-kelas"><i class="fa fa-building"></i> Ruang Kelas</a></li>
-                                <li><a href="/admin/profil"><i class="fa fa-user"></i> Profil</a></li>
+                                <li><a href="/admin/ruang-kelas"><i class="fa fa-building-o"></i> Ruang Kelas</a></li>
+                                <li><a href="/admin/profil"><i class="fa fa-user"></i></i> Profil</a></li>
+                                <li><a href="/admin/riwayat-log"><i class="fa fa-cog"></i> Riwayat Log</a></li>
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf
                                     </form>
-
                                     <a href="#"
                                         onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin logout?')) { document.getElementById('logout-form').submit(); }">
                                         <i class="fa fa-sign-out"></i> Logout
                                     </a>
                                 </li>
-
                             </ul>
-
                         </div>
-
-
                     </div>
+
                     <!-- /sidebar menu -->
 
                     <!-- /menu footer buttons -->

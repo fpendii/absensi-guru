@@ -67,6 +67,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="/guru/jadwal-mengajar-saya">
+                                        <i class="fa fa-calendar"></i> Jadwal Mengajar
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="/guru/profil">
                                         <i class="fa fa-user"></i> Profil
                                     </a>
