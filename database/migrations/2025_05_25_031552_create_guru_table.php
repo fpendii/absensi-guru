@@ -28,6 +28,7 @@ class CreateGuruTable extends Migration
             $table->date('tanggal_masuk')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 

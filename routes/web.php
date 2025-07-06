@@ -11,6 +11,9 @@ use App\Http\Controllers\guru\DataAbsensiControllerGuru;
 use App\Http\Controllers\guru\RekapAbsensiControllerGuru;
 use App\Http\Controllers\guru\ProfilControllerGuru;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\JadwalMengajarControllerAdmin;
+use App\Http\Controllers\admin\MataPelajaranControllerAdmin;
+use App\Http\Controllers\Admin\RuangKelasControllerAdmin;
 
 // Route::get('/', [DashboardControllerAdmin::class, 'dashboard'])->name('dashboard');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -38,6 +41,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/profil', [ProfilControllerAdmin::class, 'profil'])->name('profil');
     Route::post('/profil/update', [ProfilControllerAdmin::class, 'update'])->name('updateProfil');
 
+    route::get('/jadwal-mengajar', [JadwalMengajarControllerAdmin::class, 'index'])->name('jadwalNgajar');
+    route::get('/jadwal-ngajar', [JadwalMengajarControllerAdmin::class, 'index'])->name('jadwalNgajar');
+    Route::get('/jadwal-mengajar/create', [JadwalMengajarControllerAdmin::class, 'create'])->name('createJadwalNgajar');
+    Route::post('/jadwal-mengajar/store', [JadwalMengajarControllerAdmin::class, 'store'])->name('storeJadwalNgajar');
+    Route::get('/jadwal-mengajar/edit/{id}', [JadwalMengajarControllerAdmin::class, 'edit'])->name('editJadwalNgajar');
+    Route::put('/jadwal-mengajar/update/{id}', [JadwalMengajarControllerAdmin::class, 'update'])->name('updateJadwalNgajar');
+    Route::delete('/jadwal-mengajar/delete/{id}', [JadwalMengajarControllerAdmin::class, 'destroy'])->name('destroyJadwalNgajar');
+
+    // Rute untuk pengelolaan Mata Pelajaran
+    Route::resource('mata-pelajaran', MataPelajaranControllerAdmin::class)->names([
+        'index' => 'admin.mata-pelajaran.index',
+        'create' => 'admin.mata-pelajaran.create',
+        'store' => 'admin.mata-pelajaran.store', // <--- Pastikan nama ini persis sama
+        'show' => 'admin.mata-pelajaran.show',
+        'edit' => 'admin.mata-pelajaran.edit',
+        'update' => 'admin.mata-pelajaran.update',
+        'destroy' => 'admin.mata-pelajaran.destroy',
+    ])->parameters([
+        'mata-pelajaran' => 'mata_pelajaran' // Penting untuk Route Model Binding di controller
+    ]);
+
+    Route::resource('ruang-kelas', RuangKelasControllerAdmin::class);
 });
 
 // ===================== Guru =====================

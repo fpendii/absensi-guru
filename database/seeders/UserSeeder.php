@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         UserModel::create([
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('123'),
             'role' => 'admin',
         ]);
     }

@@ -10,10 +10,10 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
         UserModel::updateOrCreate(
-            ['email' => 'admin@gmail.com'],  // Cek jika sudah ada berdasarkan email
+            ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Admin',
-                'password' => bcrypt('password123'), // Ganti dengan password yang kamu inginkan
+                'password' => bcrypt('123'),
                 'role' => 'admin',
             ]
         );
