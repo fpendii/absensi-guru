@@ -100,6 +100,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Jabatan</label>
+                            <select name="jabatan" class="form-control">
+                                <option value="">-- Pilih --</option>
+                                <option value="guru" {{ $guru->jabatan == 'guru' ? 'selected' : '' }}>Guru</option>
+                                <option value="kepala_sekolah" {{ $guru->jabatan == 'kepala_sekolah' ? 'selected' : '' }}>Kepala Sekolah</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>Status Pegawai</label>
                             <input type="text" name="status_pegawai" class="form-control" value="{{ $guru->status_pegawai }}">
                         </div>

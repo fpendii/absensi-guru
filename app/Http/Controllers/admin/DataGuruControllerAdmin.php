@@ -40,7 +40,7 @@ class DataGuruControllerAdmin extends Controller
         $user = UserModel::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'guru',
+            'role' => $request->jabatan, // Pastikan 'jabatan' ada di form
         ]);
 
         // Simpan foto jika ada
@@ -60,6 +60,7 @@ class DataGuruControllerAdmin extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'alamat' => $request->alamat,
             'foto' => $fotoPath,
+
             'mata_pelajaran' => $request->mata_pelajaran,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'status_pegawai' => $request->status_pegawai,
@@ -121,6 +122,7 @@ class DataGuruControllerAdmin extends Controller
         $guru->pendidikan_terakhir = $request->pendidikan_terakhir;
         $guru->status_pegawai = $request->status_pegawai;
         $guru->tanggal_masuk = $request->tanggal_masuk;
+        $guru->jabatan = $request->jabatan; // Pastikan 'jabatan' ada di form
 
         $guru->save();
 

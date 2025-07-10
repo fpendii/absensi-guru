@@ -44,7 +44,7 @@ class DataAbsensiControllerAdmin extends Controller
 
         $tanggalRekap = Carbon::parse($tanggal)->toDateString();
 
-        $guruIds = GuruModel::pluck('id');
+        $guruIds = GuruModel::where('role', 'guru')->pluck('id');
         $guruSudahAbsen = AbsensiGuruModel::where('tanggal', $tanggalRekap)->pluck('id_guru');
         $guruBelumAbsen = $guruIds->diff($guruSudahAbsen);
 
@@ -73,7 +73,11 @@ class DataAbsensiControllerAdmin extends Controller
                 $pesan .= "- $nama\n";
             }
 
-            $nomorAtasan = '6285668947486'; // format internasional tanpa +
+            $AtasanModel = GuruModel::where('role', 'kepala_sekolah')->first();
+
+            $nomorAtasan = $AtasanModel->telepon; // format internasional tanpa +
+
+            $nomorAtasan = $nomorAtasan; // format internasional tanpa +
             $token = env('FONNTE_TOKEN');
 
             $response = Http::asForm()->withHeaders([

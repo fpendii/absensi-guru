@@ -48,6 +48,7 @@ class LokasiSekolahControllerAdmin extends Controller
         $lokasi->sekolahLat = $request->input('latitude');
         $lokasi->sekolahLong = $request->input('longitude');
         $lokasi->nama_alamat = $request->input('alamat');
+        $lokasi->radius = 500;
 
         $lokasi->save();
 
